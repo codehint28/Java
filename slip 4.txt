@@ -1,0 +1,153 @@
+import java.util.Scanner;
+
+class Q1{
+
+    static void disp(int arr[][],int row,int col){
+        int i,j;
+        for(i=0;i<row;i++){
+            System.out.println();
+            for(j=0;j<col;j++){
+                System.out.print("\t"+arr[i][j]);
+            }
+        }
+    }
+    public static void main(String args[]){
+        int arr[][];
+        int rows,cols,i,j;
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nEnter the no of rows and columns: ");
+        rows = sc.nextInt();
+        cols = sc.nextInt();
+
+        arr = new int[rows][cols];
+
+        for(i=0;i<rows;i++){
+            for(j=0;j<cols;j++){
+                System.out.print("\nEnter the value: ");
+                arr[i][j] = sc.nextInt();
+            }
+        }
+
+        int trans[][] = new int[cols][rows];
+
+        for(i=0;i<cols;i++){
+            for(j=0;j<rows;j++){
+                trans[i][j] = arr[j][i];
+            }
+        }
+
+        disp(arr,rows,cols);
+        disp(trans,cols,rows);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+class loginFailedException extends Exception{
+    loginFailedException(String message){
+        super(message);
+    }
+}
+
+class frame extends Frame implements ActionListener{
+    Button clear,login;
+    TextField username,password;
+    Label user,pass;
+    int chance = 0;
+    frame(){
+        setVisible(true);
+        setLocation(300,300);
+        setSize(300,300);
+        setLayout(new FlowLayout());
+
+        clear = new Button("Clear");
+        login = new Button("Login");
+        username = new TextField(20);
+        password = new TextField(20);
+        user = new Label("Username");
+        pass = new Label("Password");
+        
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        });
+
+        add(user);
+        add(username);
+        add(pass);
+        add(password);
+        add(clear);
+        add(login);
+
+        clear.addActionListener(this);
+        login.addActionListener(this);
+    }
+
+    void check() throws loginFailedException{
+        if(chance<3){
+            chance++;
+            if(username.getText().equals(password.getText())){
+                System.out.println("\nLogin Successfully");
+            }
+            else{
+                throw new loginFailedException("Login Failed");
+            }
+        }
+        else{
+            System.out.println("\nYour 3 chances of Login are Finished");
+        }
+    }
+    
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==clear){
+            username.setText("");
+            password.setText("");
+        }
+        else if(e.getSource()==login){
+            
+                try{
+                    check();
+                }
+                catch(loginFailedException ex){
+                    System.out.println(""+ex);
+                }
+            
+        }
+    }
+
+}
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}

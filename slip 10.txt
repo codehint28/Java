@@ -1,0 +1,101 @@
+interface Cube{
+    double getCube();
+}
+
+class Cube1 implements Cube{
+    double n;
+    Cube1(double n){
+        this.n = n;
+    }
+
+    public double getCube(){
+        return n*n*n;
+    }
+}
+
+class Q1{
+    public static void main(String args[]){
+        double n=2;
+        Cube1 c = new Cube1(n);
+
+        System.out.println("cube of "+n+" = "+c.getCube());
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+import student.StudentInfo;
+public class Q2 {
+    public static void main(String args[]){
+        StudentInfo s = new StudentInfo();
+        s.disp();
+    }
+}
+
+
+
+
+
+
+
+
+
+package student;
+
+public class StudentInfo {
+    double per;
+    StudentPer s;
+    public StudentInfo(){
+        s = new StudentPer();
+        s.accept();
+        per = s.sum/6;
+    }
+    public void disp(){
+        System.out.println("\nRoll No: "+s.roll+"\nName: "+s.name+"\nClass: "+s.cls+"\nPercentage: "+per);
+    }
+}
+
+
+
+
+
+
+
+
+
+package student;
+
+import java.util.Scanner;
+
+public class StudentPer {
+    String name,cls;
+    int roll;
+    double sum=0;
+    double marks[]=new double[6];
+    Scanner sc = new Scanner(System.in);
+
+    public void accept(){
+        System.out.print("\nEnter the Roll no: ");
+        roll = sc.nextInt();
+
+        System.out.print("\nEnter the Name: ");
+        name = sc.next();
+
+        System.out.print("\nEnter the Class: ");
+        cls = sc.next();
+
+        System.out.print("\nEnter the Marks of 6 subjects: ");
+        for(int i=0;i<6;i++){
+            marks[i] = sc.nextDouble();
+            sum+=marks[i];
+        }
+    }
+}

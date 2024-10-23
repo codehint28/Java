@@ -1,0 +1,152 @@
+import java.util.Scanner;
+
+class Customer{
+    int cno;
+    String cname,cadd,conno;
+
+    Customer(int cno,String conno,String cname,String cadd){
+        this.cno = cno;
+        this.conno = conno;
+        this.cname = cname;
+        this.cadd = cadd;
+    }
+    void disp(){
+        System.out.println("\nName: "+cname+"\nCustomer No: "+cno+"\nCustomer Address: "+cadd+"\nContact No: "+conno);
+    }
+}
+class Q1{
+    public static void main(String args[]){
+        int cno,flg=0;
+        String cname,cadd,conno;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("\nEnter how many Customer you want? : ");
+        int n = sc.nextInt();
+        Customer c[] = new Customer[n];
+
+        for(int i=0;i<n;i++){
+            System.out.print("\nEnter the name: ");
+            cname = sc.next();
+            System.out.print("\nEnter the Address: ");
+            cadd = sc.next();
+            System.out.print("\nEnter the Contact No: ");
+            conno = sc.next();
+            System.out.print("\nEnter the Customer No: ");
+            cno = sc.nextInt();
+
+            c[i] = new Customer(cno, conno, cname, cadd);
+        }
+
+        System.out.print("\nEnter the Contact No to search: ");
+        String con = sc.next();
+
+        for(int i=0;i<n;i++){
+            if(con.equals(c[i].conno)){
+                c[i].disp();
+                flg=1;
+            }
+        }
+        if(flg==0){
+            System.out.println("\nNot Found!");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+
+class Vehicle{
+    String comp;
+    double price;
+
+    Vehicle(String comp,double price){
+        this.comp = comp;
+        this.price = price;
+    }
+    void disp(){
+
+    }
+}
+class LightMotorVehicle extends Vehicle{
+    double mileage;
+    LightMotorVehicle(String comp,double price,double mileage){
+        super(comp,price);
+        this.mileage = mileage;
+    }
+    void disp(){
+        System.out.println("\nCompany: "+comp+"\nPrice: "+price+"\nMileage: "+mileage);
+    }
+}
+class HeavyMotorVehicle extends Vehicle{
+    double capacity_in_tons;
+    HeavyMotorVehicle(String comp,double price,double capacity_in_tons){
+        super(comp,price);
+        this.capacity_in_tons = capacity_in_tons;
+    }
+    void disp(){
+        System.out.println("\nCompany: "+comp+"\nPrice: "+price+"\nCapacity in tons: "+capacity_in_tons);
+    }
+}
+
+public class Q2 {
+    public static void main(String args[]){
+        String comp;
+        double price,capacity_in_tons,mileage;
+
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nHow many vehicles you want? : ");
+        int n = sc.nextInt();
+
+        Vehicle v[] = new Vehicle[n];
+
+        for(int i=0;i<n;i++){
+            System.out.println("\n1.Lightweight Vehicle\n2.Heavyweight Vehicle\nWhich type you want(1/2): ");
+            int type = sc.nextInt();
+
+            System.out.println("\nEnter the Company: ");
+            comp = sc.next();
+            System.out.println("\nEnter the Price: ");
+            price = sc.nextDouble();
+
+            if(type==1){
+            
+                System.out.println("\nEnter the Mileage: ");
+                mileage = sc.nextDouble();
+                
+                v[i] = new LightMotorVehicle(comp,price,mileage);
+            }
+            else if(type==2){
+                System.out.println("\nEnter the Capacity in ton: ");
+                capacity_in_tons = sc.nextDouble();
+
+                v[i] = new HeavyMotorVehicle(comp,price,capacity_in_tons);
+
+            }
+        }
+
+        System.out.println("\n------------------------- Lightweight Vehicles -------------------------");
+        for(int i=0;i<n;i++){
+            if(v[i].getClass().getName().equals("LightMotorVehicle")){
+                v[i].disp();
+            }
+        }
+        System.out.println("\n------------------------- Heavyweight Vehicles -------------------------");
+        for(int i=0;i<n;i++){
+            if(v[i].getClass().getName().equals("HeavyMotorVehicle")){
+                v[i].disp();
+            }
+        }
+    }
+}

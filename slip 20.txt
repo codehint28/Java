@@ -1,0 +1,67 @@
+class continent{
+    String continent="Ashia";
+}
+class country extends continent{
+    String country = "India";
+}
+class state extends country{
+    String state = "Maharashtra";
+}
+
+class Q1{
+    public static void main(String args[]){
+        state s = new state();
+        System.out.println("\nContinent: "+s.continent+"\nCountry: "+s.country+"\nState: "+s.state);
+    }
+}
+
+
+
+
+
+import operation.addition;
+import operation.maximum;
+public class Q2 {
+    public static void main(String args[]){
+        addition ad = new addition();
+        maximum m = new maximum();
+        double a=2,b=5;
+
+        System.out.println("\nAddition: "+ad.add(a,b));
+        System.out.println("\nSubtraction: "+ad.sub(a,b));
+        System.out.println("\nMaximum: "+m.max(a,b));
+    }
+}
+
+
+
+
+
+
+
+
+package operation;
+
+public class addition {
+    public double add(double a,double b){
+        return a+b;
+    }
+    public double sub(double a,double b){
+        return a-b;
+    }
+}
+
+
+
+
+
+package operation;
+
+public class maximum {
+    public double max(double a,double b){
+        if(a>b){
+            return a;
+        }
+        return b;
+    }
+}

@@ -1,0 +1,103 @@
+class Person{
+    String pname,adno,panno;
+    Person(String pname,String adno,String panno){
+        this.pname = pname;
+        this.adno = adno;
+        this.panno = panno;
+    }
+    void disp(){
+        System.out.println("\nName: "+pname+"\nAdharno: "+adno+"\nPanno: "+panno);
+    }
+}
+class Q1{
+    public static void main(String args[]){
+        Person p1 = new Person("abc", "123234335", "485495749");
+        Person p2 = new Person("def", "3457545656", "5645677578");
+        Person p3 = new Person("hij", "4565657767", "7868798989");
+        Person p4 = new Person("klm", "34235436654", "56577767756");
+        Person p5 = new Person("xyz", "435555454", "5645644556");
+
+        p1.disp();
+        p2.disp();
+        p3.disp();
+        p4.disp();
+        p5.disp();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+class frame extends JFrame implements ActionListener{
+    TextField t1,t2,t3;
+    Label l1,l2,l3;
+    Button b1;
+    int a,b;
+
+    frame(){
+        setVisible(true);
+        setLocation(400,300);
+        setSize(400,300);
+        setLayout(new FlowLayout());
+
+        t1 = new TextField(35);
+        t2 = new TextField(35);
+        t3 = new TextField(35);
+
+        l1 = new Label("First No");
+        l2 = new Label("Second No");
+        l3 = new Label("Result");
+
+        b1 = new Button("Perform");
+
+        add(l1);
+        add(t1);
+        add(l2);
+        add(t2);
+        add(l3);
+        add(t3);
+        add(b1);
+
+        b1.addActionListener(this);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent e){
+        try{
+            a = Integer.parseInt(t1.getText());
+            b = Integer.parseInt(t2.getText());
+
+            int div = a/b;
+            t3.setText(Integer.toString(div));
+        }
+        catch(NumberFormatException ex){
+            t3.setText("NumberFormatException");
+        }
+        catch(ArithmeticException ex){
+            t3.setText("ArithmaticException");
+        }
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}

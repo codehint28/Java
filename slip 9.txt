@@ -1,0 +1,79 @@
+class clock{
+    int hours,minutes,seconds;
+    String time;
+
+    clock(int hours,int minutes,int seconds){
+        this.hours = hours;
+        this.minutes = minutes;
+        this.seconds = seconds;
+
+        if(hours<24 && hours>=0 && minutes<60 && minutes>0 && seconds<60 && seconds>0){
+            setTime();
+        }
+        else{
+            System.out.println("Invalid Time! ");
+        }
+    }
+
+    void setTime(){
+        if(hours>=0 && hours<12){
+            time = "AM";
+        }
+        else if(hours>=12 && hours<24){
+            time = "PM";
+        }
+        System.out.println("\n"+hours+":"+minutes+":"+seconds+" "+time);
+    }
+
+}
+class Q1{
+    public static void main(String args[]){
+        new clock(1,50,2);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+interface Maker{
+
+}
+
+class Product implements Maker{
+    int pid,pcost,pquantity;
+    String pname;
+    static int count=0;
+
+    Product(int pid,String pname,int pcost,int pquantity){
+        this.pid = pid;
+        this.pname = pname;
+        this.pcost = pcost;
+        this.pquantity = pquantity;
+        count++;
+    }
+    void disp(){
+        System.out.println("\nProduct Id: "+pid+"\nProduct Name: "+pname+"\nProduct Cost: "+pcost+"\nProduct Quantity: "+pquantity);
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        Product p1 = new Product(12, "Pen", 10, 100);
+        Product p2 = new Product(13, "Book", 60, 50);
+        Product p3 = new Product(12, "Notebook", 30, 70);
+
+        p1.disp();
+        p2.disp();
+        p3.disp();
+    }   
+}

@@ -1,0 +1,137 @@
+class MyNumber{
+    private int data;
+    MyNumber(){
+        data = 0;
+    }
+    MyNumber(int data){
+        this.data = data;
+    }
+    void isNegative(){
+        if(data<0){
+            System.out.println("\nNumber is Negative");
+        }
+    }
+    void isPositive(){
+        if(data>0){
+            System.out.println("\nNumber is Positive");
+        }
+    }
+    void isZero(){
+        if(data==0){
+            System.out.println("\nNumber is Zero");
+        }
+    }
+    void isOdd(){
+        if(data%2!=0){
+            System.out.println("\nNumber is Odd");
+        }
+    }
+    void isEven(){
+        if(data%2==0){
+            System.out.println("\nNumber is Event");
+        }
+    }
+}
+class Q1{
+    public static void main(String args[]){
+        MyNumber n = new MyNumber(5);
+        n.isNegative();
+        n.isPositive();
+        n.isZero();
+        n.isEven();
+        n.isOdd();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+class frame extends JFrame implements ActionListener{
+    TextField t1,t2,t3;
+    Label l1,l2,l3;
+    Button b1;
+    double usd=0,sgd=0,euro=0;
+    double usd1=0,sgd1=0,euro1=0;
+
+    frame(){
+        setVisible(true);
+        setLocation(400,300);
+        setSize(400,300);
+        setLayout(new FlowLayout());
+
+        t1 = new TextField(30);
+        t2 = new TextField(30);
+        t3 = new TextField(30);
+
+        l1 = new Label("Us Dollors       ");
+        l2 = new Label("Singapur Dollors");
+        l3 = new Label("Euros            ");
+
+        b1 = new Button("Convert");
+
+        add(l1);
+        add(t1);
+        add(l2);
+        add(t2);
+        add(l3);
+        add(t3);
+        add(b1);
+
+        b1.addActionListener(this);
+        t1.setText("0");
+        t2.setText("0");
+        t3.setText("0");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    public void actionPerformed(ActionEvent e){
+        usd1 = Double.parseDouble(t1.getText());
+        sgd1 = Double.parseDouble(t2.getText());
+        euro1 = Double.parseDouble(t3.getText());
+
+        if(usd1!=usd){
+            usd = usd1;
+            sgd = usd1*1.41;
+            euro = usd1*0.92;
+        }
+        else if(sgd1!=sgd){
+            sgd = sgd1;
+            usd = sgd1/1.41;
+            euro = sgd1*0.65;
+        }
+        else if(euro1!=euro){
+            euro = euro1;
+            sgd = euro1/0.65;
+            usd = sgd/1.41;
+        }
+        t1.setText(String.format("%.2f",usd));
+        t2.setText(String.format("%.2f",sgd));
+        t3.setText(String.format("%.2f",euro));
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}

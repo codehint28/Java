@@ -1,0 +1,82 @@
+public class Q1
+ {
+    public static void main(String args[]){
+        String fname = args[0];
+        String lname = args[1];
+
+        double weight = Double.parseDouble(args[2]);
+        double height = Double.parseDouble(args[3]);
+
+        double bmi = weight / (height*height);
+
+        System.out.println("\nFirst Name: "+fname+"\nLast Name: "+lname+"\nWeight: "+weight+"\nHeight: "+height+"\nBMI Index: "+bmi);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+class CricketPlayer{
+    String name;
+    double bat_avg, no_of_innings, no_of_times_notout, totatruns;
+
+    CricketPlayer (String name,double no_of_innings,double no_of_times_notout, double totatruns){
+        this.name = name;
+        this.no_of_innings = no_of_innings;
+        this.no_of_times_notout = no_of_times_notout;
+        this.totatruns = totatruns;
+        this.bat_avg = bat_avg;
+    }
+
+    void disp(){
+        System.out.println("\nName : "+name+"\n No of Innings : "+no_of_innings+"\n No of Times Notout : "+no_of_times_notout+"\nTotal Runs: "+totatruns+"\nAverage: "+bat_avg);
+    }
+}
+public class Q2 {
+
+    static void avg(CricketPlayer player){
+        double avg = player.totatruns / (player.no_of_innings - player.no_of_times_notout);
+        player.bat_avg = avg;
+    }
+    public static void main(String args[]){
+        String name;
+        double bat_avg, no_of_innings, no_of_times_notout, totatruns;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nHow many Players You Want: ");
+        int n = sc.nextInt();
+
+        CricketPlayer player[] = new CricketPlayer[n];
+
+        for(int i=0;i<n;i++){
+            System.out.print("\nEnter the Name: ");
+            name = sc.next();
+
+            System.out.print("\nEnter the No of Innings: ");
+            no_of_innings = sc.nextDouble();
+
+            System.out.print("\nEnter the No of Times Not Out: ");
+            no_of_times_notout = sc.nextDouble();
+
+            System.out.print("\nEnter the Total Runs: ");
+            totatruns = sc.nextDouble();
+
+            player[i] = new CricketPlayer(name, no_of_innings, no_of_times_notout, totatruns);
+            avg(player[i]);
+
+        }
+        for(int i=0;i<n;i++){
+            player[i].disp();
+        }
+    }
+}

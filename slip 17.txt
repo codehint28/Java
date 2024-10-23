@@ -1,0 +1,134 @@
+import java.util.Scanner;
+
+class Customer{
+    String name,phoneNo;
+    Customer(String name,String phoneNo){
+        this.name = name;
+        this.phoneNo = phoneNo;
+    }
+} 
+class Depositer extends Customer{
+    String accno;
+    int bal;
+    Depositer(String name,String phoneNo,String accno,int bal){
+        super(name,phoneNo);
+        this.accno = accno;
+        this.bal = bal;
+    }
+}
+class Borrower extends Depositer{
+    int loanNo,loanAmt;
+    Borrower(String name,String phoneNo,String accno,int bal,int loanNo,int loanAmt){
+        super(name,phoneNo,accno,bal);
+        this.loanNo = loanNo;
+        this.loanAmt = loanAmt;
+    }
+
+    void disp(){
+        System.out.println("\nName: "+name+"\nPhone No: "+phoneNo+"\nAccount No: "+accno+"\nBalance: "+bal+"\nLoan No: "+loanNo+"\nLoan Amount: "+loanAmt);
+    }
+}
+class Q1{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int n;
+        String name, phoneNo, accno;
+        int bal,loanNo,loanAmt;
+
+        System.out.print("\nHow many customer you want: ");
+        n = sc.nextInt();
+
+        Borrower b[] = new Borrower[n];
+
+        for(int i=0;i<n;i++){
+            System.out.print("\nEnter the Name: ");
+            name = sc.next();
+            System.out.print("\nEnter the Phone no: ");
+            phoneNo = sc.next();
+            System.out.print("\nEnter the Account No: ");
+            accno = sc.next();
+            System.out.print("\nEnter the Balance: ");
+            bal = sc.nextInt();
+            System.out.print("\nEnter the Loan No: ");
+            loanNo = sc.nextInt();
+            System.out.print("\nEnter the Loan Amount: ");
+            loanAmt = sc.nextInt();
+            b[i] = new Borrower(name, phoneNo, accno, bal, loanNo, loanAmt);
+        }
+        System.out.println("\n-------------------- Customer Details --------------------\n");
+        for(int i=0;i<n;i++){
+            b[i].disp();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+class frame extends JFrame implements ActionListener{
+    JTextField t1,t2,t3;
+    JButton b1,b2;
+
+    frame(){
+        setVisible(true);
+        setLocation(400,400);
+        setSize(400,300);
+        setLayout(new FlowLayout());
+
+        t1 = new JTextField(30);
+        t2 = new JTextField(30);
+        t3 = new JTextField(30);
+
+        b1 = new JButton("Concatinate");
+        b2 = new JButton("Reverse");
+
+        add(t1);
+        add(t2);
+        add(t3);
+        add(b1);
+        add(b2);
+
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }
+
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==b1){
+            t3.setText(t1.getText()+t2.getText());
+        }
+        else if(e.getSource()==b2){
+            String rev = "";
+            String temp = t1.getText();
+            for(int i=temp.length()-1;i>=0;i--){
+                rev += temp.charAt(i);
+            }
+            t3.setText(rev);
+        }
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}

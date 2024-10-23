@@ -1,0 +1,108 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.Scanner;
+class Q1{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        String file1,file2,str="";
+        FileInputStream fin = null;
+        FileOutputStream out = null;
+        PrintStream p;
+
+        System.out.print("\nEnter name of File1: ");
+        file1 = sc.next();
+        System.out.print("\nEnter name of File2: ");
+        file2 = sc.next();
+        
+        try{
+            fin = new FileInputStream(file1);
+            out = new FileOutputStream(file2);
+            p = new PrintStream(out);
+
+            while(true){
+                int bit = fin.read();
+                if(bit==-1){
+                    break;
+                }
+                p.print((char)bit);
+            }
+
+        }
+        catch(Exception e){
+            System.out.println("\nError");
+        }
+    }
+}
+
+
+
+
+
+class Account{
+    String name;
+    int accno;
+    
+    Account(String name,int accno){
+        this.name = name;
+        this.accno = accno;
+    }
+}
+
+class SavingAccount extends Account{
+    int savingBal,minBal;
+    SavingAccount(String name,int accno,int savingBal,int minBal){
+        super(name,accno);
+        this.savingBal = savingBal;
+        this.minBal = minBal;
+    }
+}
+class AccountDetail extends SavingAccount{
+    int depositeAmt,withdrawlAmt;
+    AccountDetail(String name,int accno,int savingBal,int minBal,int depositeAmt,int withdrawlAmt){
+        super(name,accno,savingBal,minBal);
+        this.depositeAmt = depositeAmt;
+        this.withdrawlAmt = withdrawlAmt;
+    }
+
+    void disp(){
+        System.out.println("\nCustomer Name: "+name+"\nAccount No: "+accno+"\nSaving Balance: "+savingBal+"\nMinimum Balance: "+minBal+"\nDeposite Amount: "+depositeAmt+"\nWithdrawl Amount: "+withdrawlAmt);
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        AccountDetail customer = new AccountDetail("abcd",12232454,10000,500,2000,4000);
+        customer.disp();
+    }
+}
+
+
+
+file1.txt
+
+1. George Orwell - 1984
+2. J.K. Rowling - Harry Potter and the Sorcerer's Stone 
+3. J.R.R. Tolkien - The Hobbit
+4. Harper Lee - To Kill a Mockingbird 
+5. F. Scott Fitzgerald - The Great Gatsby 
+6. Jane Austen - Pride and Prejudice 7. Mark Twain - Adventures of Huckleberry Finn 
+8. Leo Tolstoy - War and Peace 
+9. Charles Dickens - A Tale of Two Cities 
+10. Mary Shelley - Frankenstein
+
+
+file2.txt
+
+1. George Orwell - 1984
+2. J.K. Rowling - Harry Potter and the Sorcerer's Stone 
+3. J.R.R. Tolkien - The Hobbit
+4. Harper Lee - To Kill a Mockingbird 
+5. F. Scott Fitzgerald - The Great Gatsby 
+6. Jane Austen - Pride and Prejudice 7. Mark Twain - Adventures of Huckleberry Finn 
+8. Leo Tolstoy - War and Peace 
+9. Charles Dickens - A Tale of Two Cities 
+10. Mary Shelley - Frankenstein
+
+
+
+

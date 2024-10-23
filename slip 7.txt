@@ -1,0 +1,103 @@
+import java.util.Scanner;
+
+class bank{
+    int balance=0;
+
+    void deposite(int amount){
+        balance+=amount;
+        System.out.println("\nSuccesfully Deposited amount!");
+    }
+    void withdraw(int amount){
+        if(balance-amount>=0){
+            balance-=amount;
+            System.out.println("Succesfully Withdrawl Money");
+        }
+        else{
+            System.out.println("\nDont have enough money for Withdrawl");
+        }
+    }
+    void disp(){
+        System.out.println("\nTotal Balance: "+balance);
+    }
+
+}
+
+class Q1{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int amount;
+        bank b = new bank();
+
+        System.out.println("\n1.Deposite\n2.Withdraw\n3.Get Balance\nEnter the choice: ");
+        int choice = sc.nextInt();
+
+        switch(choice){
+            case 1: System.out.print("\nEnter the amount: ");
+                    amount = sc.nextInt();
+                    b.deposite(amount);
+                    break;
+
+            case 2: System.out.print("\nEnter the amount: ");
+                    amount = sc.nextInt();
+                    b.withdraw(amount);
+                    break;
+            case 3: b.disp();
+                    break;
+        }
+    }
+}
+
+
+
+
+
+
+
+import java.io.*;
+import java.util.*;
+public class Q2 {
+    public static void main(String args[]){
+        FileOutputStream out = null;
+        FileInputStream in = null;
+        PrintStream p =null;
+        Scanner sc = new Scanner(System.in);
+        String str="";
+
+        try{
+            out = new FileOutputStream(args[0]);
+            in = new FileInputStream(args[0]);
+            p = new PrintStream(out);
+
+            while(!str.equals("stop")){
+                str = sc.next();
+                p.println(str);
+            }
+
+            str = "";
+
+            while(true){
+                int bit = in.read();
+                if(bit==-1){
+                    break;
+                }
+                str+=(char)bit;
+            }
+
+            for(int i=str.length()-1;i>=0;i--){
+                System.out.print(str.charAt(i));
+            }
+        }
+        catch(Exception e){
+            System.out.println("\nFile not Found!");
+        }
+    }
+}
+
+
+
+main.txt
+
+hey
+hello
+stop
+

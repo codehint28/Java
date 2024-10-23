@@ -1,0 +1,83 @@
+abstract class Bank{
+    abstract void getBalance();
+}
+class BankA extends Bank{
+    int bal = 100;
+    void getBalance(){
+        System.out.println("\nBalance: "+bal);
+    }
+}
+class BankB extends Bank{
+    int bal = 150;
+    void getBalance(){
+        System.out.println("\nBalance: "+bal);
+    }
+}
+class BankC extends Bank{
+    int bal = 200;
+    void getBalance(){
+        System.out.println("\nBalance: "+bal);
+    }
+}
+class Q1{
+    public static void main(String args[]){
+        BankA b1 = new BankA();
+        b1.getBalance();
+        BankB b2 = new BankB();
+        b2.getBalance();
+        BankC b3 = new BankC();
+        b3.getBalance();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+
+class frame extends Frame{
+    int x,y;
+    frame(){
+        setVisible(true);
+        setLocation(400,300);
+        setSize(400,400);
+
+        addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                x = e.getX();
+                y = e.getY();
+                repaint();
+            }
+        });
+
+        addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        });
+
+    }
+    public void paint(Graphics g){
+        g.drawOval(x-30,y-30,60,60);
+        g.drawOval(x-20,y-20,40,40);
+        g.drawOval(x-10,y-10,20,20);
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}

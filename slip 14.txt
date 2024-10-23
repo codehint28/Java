@@ -1,0 +1,169 @@
+import java.util.Scanner;
+class NumberIsZero extends Exception{
+    public String toString(){
+        return "Number is 0";
+    }
+}
+ class Q1 {
+    public static void main(String args[]){
+        int n,flg=0;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nEnter the Number: ");
+        n = sc.nextInt();
+
+        try{
+            if(n==0){
+                throw new NumberIsZero();
+            }
+            for(int i=2;i<n;i++){
+                if(n%i==0){
+                    flg=1;
+                    break;
+                }
+            }
+            if(flg==0){
+                System.out.println("\nNumber is Prime");
+            }
+            else{
+                System.out.println("\nNumber is not Prime");
+            }
+        }
+        catch(NumberIsZero e){
+            System.out.println(e);
+        }
+    }
+}
+
+
+
+
+
+import sy.SYMarks;
+import ty.TYMarks;
+import java.util.Scanner;
+
+class Student {
+    int rollNumber;
+    String name;
+    SYMarks syMarks;
+    TYMarks tyMarks;
+
+    Student(int rollNumber, String name, SYMarks syMarks, TYMarks tyMarks) {
+        this.rollNumber = rollNumber;
+        this.name = name;
+        this.syMarks = syMarks;
+        this.tyMarks = tyMarks;
+    }
+
+    String calculateGrade() {
+        int totalComputerMarks = syMarks.ComputerTotal + tyMarks.Theory + tyMarks.Practicals;
+
+        if (totalComputerMarks >= 70) {
+            return "A";
+        } else if (totalComputerMarks >= 60) {
+            return "B";
+        } else if (totalComputerMarks >= 50) {
+            return "C";
+        } else if (totalComputerMarks >= 40) {
+            return "Pass Class";
+        } else {
+            return "FAIL";
+        }
+    }
+
+    public void displayResult() {
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Name: " + name);
+        System.out.println("SY Computer Total: " + syMarks.ComputerTotal);
+        System.out.println("TY Computer Theory: " + tyMarks.Theory);
+        System.out.println("TY Computer Practicals: " + tyMarks.Practicals);
+        System.out.println("Grade: " + calculateGrade());
+        System.out.println("----------------------------");
+    }
+}
+
+public class Q2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of s: ");
+        int n = sc.nextInt();
+        sc.nextLine(); 
+
+        Student[] s = new Student[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Enter details for student " + (i + 1) + ":");
+            System.out.print("Enter Roll Number: ");
+            int rollNumber = sc.nextInt();
+            sc.nextLine(); 
+
+            System.out.print("Enter Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Enter SY Computer Total: ");
+            int syComputer = sc.nextInt();
+            System.out.print("Enter SY Maths Total: ");
+            int syMaths = sc.nextInt();
+            System.out.print("Enter SY Electronics Total: ");
+            int syElectronics = sc.nextInt();
+
+            System.out.print("Enter TY Computer Theory Marks: ");
+            int tyTheory = sc.nextInt();
+            System.out.print("Enter TY Computer Practical Marks: ");
+            int tyPracticals = sc.nextInt();
+
+            SYMarks syMarks = new SYMarks(syComputer, syMaths, syElectronics);
+            TYMarks tyMarks = new TYMarks(tyTheory, tyPracticals);
+
+            s[i] = new Student(rollNumber, name, syMarks, tyMarks);
+        }
+
+        System.out.println("\nStudent Results:");
+        for (int i=0;i<n;i++) {
+            s[i].displayResult();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+package sy;
+
+public class SYMarks {
+    public int ComputerTotal;
+    public int MathsTotal;
+    public int ElectronicsTotal;
+
+    public SYMarks(int computer, int maths, int electronics) {
+        this.ComputerTotal = computer;
+        this.MathsTotal = maths;
+        this.ElectronicsTotal = electronics;
+    }
+}
+
+
+
+
+
+
+package ty;
+
+public class TYMarks {
+    public int Theory;
+    public int Practicals;
+
+    public TYMarks(int theory, int practicals) {
+        this.Theory = theory;
+        this.Practicals = practicals;
+    }
+}

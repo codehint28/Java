@@ -1,0 +1,92 @@
+class Q1{
+    public static void main(String args[]){
+        
+        for(int i=0;i<args.length;i++){
+            Integer.parseInt(args[i]);
+        }
+
+        System.out.println("\nPrime Numbers Are: ");
+        for(int i=0;i<args.length;i++){
+            int n1 = Integer.parseInt(args[i]);
+            int flg = 0;
+            for(int j=2;j<n1;j++){
+                if(n1%j == 0){
+                    flg=1;
+                    break;
+                }
+            }
+            if(flg==0){
+                System.out.print("\t"+n1);
+            }
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+Q2
+
+import java.util.Scanner;
+abstract class Staff{
+    protected int id;
+    String name;
+
+    Staff(int id,String name){
+        this.id = id;
+        this.name = name;
+    }
+
+    abstract void disp();
+}
+
+class OfficeStaff extends Staff{
+    String department;
+
+    OfficeStaff(int id,String name,String department){
+        super(id,name);
+        this.department = department;
+    }
+
+    void disp(){
+        System.out.println("\nId : "+id+"\nName : "+name+"\nDepartment : "+department);
+    }
+}
+
+ class Q2{
+    public static void main(String args[]){
+        int n,id;
+        String department,name;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nHow many Staff You Want: ");
+        n = sc.nextInt();
+
+        OfficeStaff os[] = new OfficeStaff[n];
+
+        for(int i=0;i<n;i++){
+            System.out.print("\nEnter the Id: ");
+            id = sc.nextInt();
+
+            System.out.print("\nEnter the Name: ");
+            name = sc.next();
+
+            System.out.print("\nEnter the Department Name: ");
+            department = sc.next();
+
+            os[i] = new OfficeStaff(id, name, department);
+        }
+
+        System.out.println("\nDetails of Office Staff: ");
+
+        for(int i=0;i<n;i++){
+            os[i].disp();
+        }
+    }
+}

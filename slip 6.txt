@@ -1,0 +1,77 @@
+class Employee  {
+    int esal,eid;
+    String ename,edesignation;
+
+    Employee(int eid,String ename,String edesignation,int esal){
+        this.eid = eid;
+        this.ename = ename;
+        this.edesignation = edesignation;
+        this.esal = esal;
+    }
+
+    
+    public String toString(){
+        return "\nEid: "+eid+"\nEname: "+ename+"\nedesignation: "+edesignation+"esalary: "+esal;
+    }
+    
+}
+class Q1{
+    public static void main(String args[]){
+        Employee e = new Employee(12, "abc", "prof", 100000);
+        System.out.println(e.toString());
+    }
+}
+
+
+
+
+
+
+
+abstract class order{
+    int id;
+    String description;
+
+    order(int id,String description){
+        this.id = id;
+        this.description = description;
+    }
+
+    abstract void disp();
+}
+
+class purchaseOrder extends order{
+    String customerName;
+
+    purchaseOrder(int id,String description,String customerName){
+        super(id,description);
+        this.customerName = customerName;
+    }
+
+    void disp(){
+        System.out.println("\nId: "+id+"\nDiscription: "+description+"\nCustomer Name: "+customerName);
+    }
+}
+
+class salesOrder extends order{
+    String vendorName;
+
+    salesOrder(int id,String description,String vendorName){
+        super(id,description);
+        this.vendorName = vendorName;
+    }
+
+    void disp(){
+        System.out.println("\nId: "+id+"\nDiscription: "+description+"\nCustomer Name: "+vendorName);
+    }
+}
+
+public class Q2 {
+    public static void main(String args[]){
+        purchaseOrder p1 = new purchaseOrder(12, "Motor", "abc");
+        p1.disp();
+
+        salesOrder p2 = new salesOrder(122, "car", "xyz");
+        p2.disp();
+    }
+}

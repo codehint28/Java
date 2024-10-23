@@ -1,0 +1,81 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+class Q1{
+    public static void main(String args[]){
+        String cities[];
+        int n;
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nHow Man Cities you want: ");
+        n = sc.nextInt();
+
+        cities = new String[n];
+
+        for(int i=0;i<n;i++){
+            System.out.print("\nEnter the Name of City: ");
+            cities[i] = sc.next();
+        }
+        Arrays.sort(cities);
+
+        System.out.println("\n Sorted City Names: ");
+        System.out.println(Arrays.toString(cities));
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+class covidException extends Exception{
+    covidException(String message){
+        super(message);
+    }
+}
+
+class patient{
+    String patient_name; 
+    int patient_age, patient_oxy_level,patient_HRCT_report;
+ 
+    patient(String patient_name, int patient_age, int patient_oxy_level,int patient_HRCT_report){
+        this.patient_name = patient_name;
+        this.patient_age = patient_age;
+        this.patient_oxy_level = patient_oxy_level;
+        this.patient_HRCT_report = patient_HRCT_report;
+    }
+
+    void disp(){
+        System.out.println("\nName: "+patient_name+"\nAge: "+patient_age+"\nOxygen Level: "+patient_oxy_level+"\nHRCT Report: "+patient_HRCT_report);
+    }
+
+    void check() throws covidException{
+        if(patient_oxy_level<95 && patient_HRCT_report>10){
+            throw new covidException("Patient is Covid Positive");
+        }
+        else{
+            disp();
+        }
+    }
+}
+
+public class Q2 {
+    public static void main(String args[]){
+        patient p = new patient("chaitanya",19,90,12);
+        try{
+            p.check();
+        }
+        catch(covidException ex){
+            System.out.println("\n"+ex);
+        }
+    }
+}

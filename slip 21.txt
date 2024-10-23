@@ -1,0 +1,99 @@
+import java.util.Scanner;
+
+class InvalidDateException extends Exception {
+    public InvalidDateException(String message) {
+        super(message);
+    }
+}
+
+class MyDate {
+    private int day;
+    private int month;
+    private int year;
+
+    public MyDate(int day, int month, int year) throws InvalidDateException {
+        if (!isValidDate(day, month, year)) {
+            throw new InvalidDateException("Invalid date: " + day + "/" + month + "/" + year);
+        }
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
+     boolean isValidDate(int day, int month, int year) {
+        if (year < 1 || month < 1 || month > 12) {
+            return false;
+        }
+        int[] daysInMonth = { 31, (isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        return day > 0 && day <= daysInMonth[month - 1];
+    }
+
+     boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+
+     void displayDate() {
+        System.out.printf("Date: %02d/%02d/%d%n", day, month, year);
+    }
+
+     static MyDate acceptDate() throws InvalidDateException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter date (dd mm yyyy): ");
+        int day = sc.nextInt();
+        int month = sc.nextInt();
+        int year = sc.nextInt();
+        return new MyDate(day, month, year);
+    }
+}
+public class Q1 {
+    public static void main(String[] args) {
+        try {
+            MyDate myDate = MyDate.acceptDate();
+            myDate.displayDate();
+        } catch (InvalidDateException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Employee{
+    int id,sal;
+    String name,dname;
+    static int count=0;
+
+    Employee(int id,String name,String dname,int sal){
+        this.id = id;
+        this.name = name;
+        this.dname = dname;
+        this.sal = sal;
+        count++;
+        System.out.println(" "+count+" Objects are created");
+    }
+    
+    void disp(){
+        System.out.println("\nName: "+name+"\nId: "+id+"\nDepartment Name: "+dname+"\nSalary: "+sal);
+    }
+
+}
+class Q2{
+    public static void main(String args[]){
+        Employee e1 = new Employee(2, "abc", "CS", 10000);
+        e1.disp();
+        Employee e2 = new Employee(3, "def", "ELC", 13000);
+        e2.disp();
+        Employee e3 = new Employee(4, "xyz", "MTC", 20000);
+        e3.disp();
+    }
+}

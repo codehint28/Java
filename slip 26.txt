@@ -1,0 +1,163 @@
+class Item{
+    int ino;
+    String iname;
+    double iprice;
+    static int count=0;
+
+    Item(int ino,String iname,double iprice){
+        this.ino = ino;
+        this.iname = iname;
+        this.iprice = iprice;
+        count++;
+    }
+    static void getCount(){
+        System.out.println("\nObjects created: "+count);
+    }
+    void disp(){
+        System.out.println("\nItem Name: "+iname+"\nItem No: "+ino+"\nItem Price: "+iprice);
+    }
+}
+class Q1{
+    public static void main(String args[]){
+        Item i1 = new Item(12,"Pen",10);
+        Item.getCount();
+        i1.disp();
+
+        Item i2 = new Item(20,"Motor",1000);
+        Item.getCount();
+        i2.disp();
+
+        Item i3 = new Item(2,"Chair",2000);
+        Item.getCount();
+        i2.disp();
+    }
+}
+
+
+
+
+
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Scanner;
+class Donor{
+    String name,add,cno,bgroup,dold;
+    int age;
+
+    Donor(String name, String add, String cno, String bgroup, String dold, int age) {
+        this.name = name;
+        this.add = add;
+        this.cno = cno;
+        this.bgroup = bgroup;
+        this.dold = dold;
+        this.age = age;
+    }
+    boolean isEligible(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate lastDonationDate = LocalDate.parse(dold,formatter);
+        LocalDate currentDate = LocalDate.now();
+        long months = ChronoUnit.MONTHS.between(lastDonationDate,currentDate);
+        if(months>6){
+            return true;
+        }
+        return false;
+    }
+    
+}
+public class Q2 {
+    public static void main(String args[]){
+        FileOutputStream out;
+        FileInputStream fin;
+        PrintStream p;
+        int n,age;
+        String name,add,cno,bgroup,dold;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("\nHow many donors you want: ");
+        n = sc.nextInt();
+        Donor d[] = new Donor[n];
+
+        try{
+            out = new FileOutputStream("donors_info.txt");
+            fin = new FileInputStream("donors_info.txt");
+            p = new PrintStream(out);
+
+            for(int i=0;i<n;i++){
+                System.out.print("\nEnter the Name of Donor: ");
+                name = sc.next();
+                System.out.print("\nEnter the Address: ");
+                add = sc.next();
+                System.out.print("\nEnter the Contact No: ");
+                cno = sc.next();
+                System.out.print("\nEnter the Blood Group: ");
+                bgroup = sc.next();
+                System.out.print("\nEnter the Date of Last Donation: ");
+                dold = sc.next();
+                System.out.print("\nEnter the Age of Donor: ");
+                age = sc.nextInt();
+                d[i] = new Donor(name, add, cno, bgroup, dold, age);
+
+                p.print(name);
+                p.print("\n"+add);
+                p.print("\n"+cno);
+                p.print("\n"+bgroup);
+                p.print("\n"+dold);
+                p.print("\n"+age+"\n ");
+            }
+            int i=0;
+            while(i<n){
+                String str="";
+
+                while(true){
+
+                   try{
+
+                    int bit = fin.read();
+                    if(bit == -1 || (char)bit ==' '){
+                        break;
+                    }
+                    str += (char)bit;
+
+                   }
+                   catch(Exception e){
+
+                   }
+                }
+                if(d[i].bgroup.equals("a+ve") && d[i].isEligible()){
+                    System.out.println(str);
+                }
+                
+                i++;
+            }
+
+        }
+        catch(FileNotFoundException e){
+
+        }
+    }
+}
+
+
+
+
+donors_info.txt
+
+suraj
+sdgfdg 
+sdgfdg456 
+o+ve
+01-01-2024 
+19
+karan
+dfgjdf
+45435
+a+ve
+01-01-2023
+19

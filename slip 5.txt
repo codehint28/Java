@@ -1,0 +1,121 @@
+class continent{
+    String continent="Ashia";
+}
+class country extends continent{
+    String country = "India";
+}
+class state extends country{
+    String state = "Maharashtra";
+}
+
+class Q1{
+    public static void main(String args[]){
+        state s = new state();
+        System.out.println("\nContinent: "+s.continent+"\nCountry: "+s.country+"\nState: "+s.state);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+import java.util.Scanner;
+
+public class Q2 {
+
+    public static int[][] addMatrices(int[][] m1, int[][] m2, int rows, int cols) {
+        int[][] result = new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result[i][j] = m1[i][j] + m2[i][j];
+            }
+        }
+        return result;
+    }
+
+    public static int[][] multiplyMatrices(int[][] m1, int[][] m2, int rows1, int cols1, int cols2) {
+        int[][] result = new int[rows1][cols2];
+        for (int i = 0; i < rows1; i++) {
+            for (int j = 0; j < cols2; j++) {
+                result[i][j] = 0;
+                for (int k = 0; k < cols1; k++) {
+                    result[i][j] += m1[i][k] * m2[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
+    public static void displayMatrix(int[][] matrix, int rows, int cols) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(matrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int rows, cols, choice;
+
+        System.out.print("Enter the number of rows of the matrices: ");
+        rows = sc.nextInt();
+        System.out.print("Enter the number of columns of the matrices: ");
+        cols = sc.nextInt();
+
+        System.out.println("Enter elements of first matrix:");
+        int[][] m1 = new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                m1[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Enter elements of second matrix:");
+        int[][] m2 = new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                m2[i][j] = sc.nextInt();
+            }
+        }
+
+        do {
+            System.out.println("\nMENU");
+            System.out.println("1. Addition of matrices");
+            System.out.println("2. Multiplication of matrices");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    int[][] sumMatrix = addMatrices(m1, m2, rows, cols);
+                    System.out.println("Resultant matrix after addition:");
+                    displayMatrix(sumMatrix, rows, cols);
+                    break;
+
+                case 2:
+                    System.out.println("Resultant matrix after multiplication:");
+                    int[][] productMatrix = multiplyMatrices(m1, m2, rows, cols, cols);
+                    displayMatrix(productMatrix, rows, cols);
+                    break;
+
+                case 3:
+                    System.out.println("Exiting the program...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        } while (choice != 3);
+
+    }
+}

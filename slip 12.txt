@@ -1,0 +1,185 @@
+class College{
+    int cno;
+    String cname,caddr;
+
+    College(int cno,String cname,String caddr){
+        this.cno = cno;
+        this.cname = cname;
+        this.caddr = caddr;
+    }
+    void disp(){
+        System.out.println("\nCollege No: "+cno+"\nCollege Name: "+cname+"\nCollege Address: "+caddr);
+    }
+}
+
+class Department extends College{
+    int dno;
+    String dname;
+
+    Department(int cno,int dno,String cname,String dname,String caddr){
+        super( cno, cname, caddr);      // calling parameterized constructor of parent class or super class
+        this.dno = dno;
+        this.dname = dname;
+    }
+
+    void disp(){
+        super.disp();       // Calling disp function of college class
+        System.out.println("\nDepartment No: "+dno+"\nDepartment Name: "+dname);
+    }
+
+}
+class Q1{
+    public static void main(String args[]){
+        Department d = new Department(12, 2, "VP College", "Computer Science", "Baramati");
+        d.disp();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Panel;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+class CalculatorFrame extends Frame implements ActionListener {
+    Button b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16;
+    TextField t1;
+    String operator;
+    double num1, num2, result;
+
+    CalculatorFrame() {
+        setTitle("Simple Calculator");
+        setSize(400, 400);
+        setLocation(300, 200);
+        setLayout(new BorderLayout());
+
+        t1 = new TextField();
+        t1.setEditable(false);
+        add(t1, BorderLayout.NORTH);
+
+        Panel p = new Panel();
+        p.setLayout(new GridLayout(4, 4));
+
+        b1 = new Button("1");
+        b2 = new Button("2");
+        b3 = new Button("3");
+        b4 = new Button("4");
+        b5 = new Button("5");
+        b6 = new Button("6");
+        b7 = new Button("7");
+        b8 = new Button("8");
+        b9 = new Button("9");
+        b10 = new Button("0");
+        b11 = new Button(".");
+        b12 = new Button("=");
+        b13 = new Button("/");
+        b14 = new Button("*");
+        b15 = new Button("-");
+        b16 = new Button("+");
+
+        p.add(b1);
+        p.add(b2);
+        p.add(b3);
+        p.add(b13);  
+        p.add(b4);
+        p.add(b5);
+        p.add(b6);
+        p.add(b14);  
+        p.add(b7);
+        p.add(b8);
+        p.add(b9);
+        p.add(b15);  
+        p.add(b10);
+        p.add(b11);
+        p.add(b12);
+        p.add(b16);  
+
+        Button b[] = new Button[]{b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16};
+        for (int i=0;i<b.length;i++) {
+            b[i].setPreferredSize(new Dimension(80, 30));
+            b[i].addActionListener(this);
+        }
+
+        add(p, BorderLayout.CENTER);
+
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+
+        if (command.charAt(0) >= '0' && command.charAt(0) <= '9') {
+            t1.setText(t1.getText() + command);
+        } else if (command.equals("C")) {
+            t1.setText("");
+            num1 = num2 = result = 0;
+            operator = "";
+        } else if (command.equals("=")) {
+            num2 = Double.parseDouble(t1.getText());
+            switch (operator) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    if (num2 != 0) {
+                        result = num1 / num2;
+                    } else {
+                        t1.setText("Error");
+                        return;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            t1.setText(String.valueOf(result));
+            operator = "";
+        } else {
+            operator = command;
+            num1 = Double.parseDouble(t1.getText());
+            t1.setText("");
+        }
+    }
+}
+
+public class Q2 {
+    public static void main(String[] args) {
+        new CalculatorFrame();
+    }
+}

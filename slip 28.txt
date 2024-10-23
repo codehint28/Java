@@ -1,0 +1,89 @@
+import java.io.File;
+class Q1{
+    public static void main(String args[]){
+        File fp = new File(args[0]);
+
+        System.out.println(fp.exists()?"File Exists":"File doesnt Exists");
+        System.out.println(fp.canRead()?"File is Readable":"File is Not Readable");
+        System.out.println(fp.canWrite()?"File is Writable":"File is Not Writable");
+        System.out.println("Size : "+fp.length()+" Bytes");
+    }
+}
+
+
+
+
+
+
+import java.awt.Button;
+import java.awt.FlowLayout;
+import java.awt.Label;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+class frame extends JFrame implements ActionListener{
+    TextField t1,t2;
+    Label l1,l2;
+    Button b1;
+    double cel1=0,fah1=0,cel=0,fah=0;
+
+    frame(){
+        setVisible(true);
+        setLocation(400,300);
+        setSize(400,300);
+        setLayout(new FlowLayout());
+
+        t1 = new TextField(35);
+        t2 = new TextField(35);
+
+        l1 = new Label("Celsius");
+        l2 = new Label("Fahrenheit");
+
+        b1 = new Button("convert");
+
+        add(l1);
+        add(t1);
+        add(l2);
+        add(t2);
+        add(b1);
+
+        t1.setText("0");
+        t2.setText("0");
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        b1.addActionListener(this);
+    }
+    public void actionPerformed(ActionEvent e){
+        cel1 = Double.parseDouble(t1.getText());
+        fah1 = Double.parseDouble(t2.getText());
+
+        if(cel1!=cel){
+            cel = cel1;
+            fah = cel*(9/5)+32;
+        }
+        else if(fah1!=fah){
+            fah = fah1;
+            cel = (fah-32)*5/9;
+        }
+        t1.setText(String.format("%.2f",cel));
+        t2.setText(String.format("%.2f",fah));
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}
+
+
+a.txt
+
+edsfsfnjgvnf
+sgfrgjet
+ethbtgrjhryjy
+tgjhnyrgjty
+yrjjnytmnjy

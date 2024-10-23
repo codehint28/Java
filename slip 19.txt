@@ -1,0 +1,89 @@
+import java.util.Scanner;
+
+class Q1{
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+        int arr[][];
+        int n;
+        System.out.print("\nHow many elements you want: ");
+        n = sc.nextInt();
+
+        arr= new int[n][n];
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                System.out.print("\nEnter the Number: ");
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        System.out.println("\nAll Diagonal Elements are: ");
+        for(int i=0;i<n;i++){
+            System.out.println();
+            for(int j=0;j<n;j++){
+                if(i==j){
+                    System.out.print(" "+arr[i][j]);
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.Choice;
+import java.awt.FlowLayout;
+import java.awt.TextField;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JFrame;
+
+class frame extends JFrame implements ItemListener{
+    Choice c;
+    TextField t;
+
+    frame(){
+        setVisible(true);
+        setLocation(400,300);
+        setSize(400,300);
+        setLayout(new FlowLayout());
+
+        c = new Choice();
+        t = new TextField(30);
+
+        c.add("Java");
+        c.add("Operating System");
+        c.add("Block Chain");
+        c.add("Python");
+        c.add("Data Science");
+        c.add("Web technology");
+        c.add("TCS");
+        c.add("Computer Networks");
+
+        add(c);
+        add(t);
+
+        c.addItemListener(this);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    public void itemStateChanged(ItemEvent e){
+        t.setText(c.getSelectedItem());
+    }
+
+}
+
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}

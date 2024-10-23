@@ -1,0 +1,118 @@
+abstract class Shape{
+    int a,b;
+    abstract void printArea();
+}
+class Rectangle extends Shape{
+    Rectangle(int a,int b){
+        super.a = a;
+        super.b = b;
+    }
+    void printArea(){
+        System.out.println("\nArea of Rectangle: "+a*b);
+    }
+}
+class Triangle extends Shape{
+    Triangle(int a,int b){
+        super.a = a;
+        super.b = b;
+    }
+    void printArea(){
+        System.out.println("\nArea of Triangle: "+0.5*a*b);
+    }
+}
+class Circle extends Shape{
+    Circle(int a){
+        super.a = a;
+    }
+    void printArea(){
+        System.out.println("\nArea of Circle: "+3.14*(a*a));
+    }
+}
+
+class Q1{
+    public static void main(String args[]){
+        int length=12,width=23,base=5,height=10,radius=8;
+
+        Rectangle r = new Rectangle(length, width);
+        r.printArea();
+
+        Triangle t = new Triangle(base, height);
+        t.printArea();
+
+        Circle c = new Circle(radius);
+        c.printArea();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+class frame extends Frame{
+    String msg = "";
+    frame(){
+        setVisible(true);
+        setLocation(400,300);
+        setSize(400,300);
+        
+        addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+                msg = "Mouse Clicked";
+                repaint();
+            }
+            public void mousePressed(MouseEvent e){
+                msg = "Mouse Pressed";
+                repaint();
+            }
+            public void mouseReleased(MouseEvent e){
+                msg = "Mouse Released";
+                repaint();
+            }
+            public void mouseEntered(MouseEvent e){
+                msg = "Mouse Entered";
+                repaint();
+            }
+            public void mouseExited(MouseEvent e){
+                msg = "Mouse Exited";
+                repaint();
+            }
+        });
+
+        addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                System.exit(0);
+            }
+        });
+    }
+    public void paint(Graphics g){
+        g.setColor(Color.RED);
+        g.setFont(new Font("Arial",Font.BOLD,20));
+        g.drawString(msg,150,150);
+    }
+}
+public class Q2 {
+    public static void main(String args[]){
+        new frame();
+    }
+}
